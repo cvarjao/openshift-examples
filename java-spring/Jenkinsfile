@@ -1,5 +1,4 @@
 stage('build') {
     echo "Building..."
     echo "Something cool"
-    echo "and shiny"
 }
