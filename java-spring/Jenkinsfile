@@ -1,9 +1,24 @@
-properties ([
-    parameters ([
-        string(name: 'REPO_REFSPEC', defaultValue: '+refs/pull/*:refs/remotes/origin/pr/*'),
-        string(name: 'TARGET_BRANCH_NAME', defaultValue: 'refs/remotes/origin/pr/2/head')
-    ])
+
+properties([
+  disableConcurrentBuilds(),
+  parameters([
+    string(name: 'REPO_REFSPEC', defaultValue: '+refs/pull/*:refs/remotes/origin/pr/*', description: 'clone refspec'),
+    string(name: 'TARGET_BRANCH_NAME', defaultValue: 'refs/remotes/origin/pr/2/head', description: 'Target full ref branch name')
+  ]),
+  pipelineTriggers([])
 ])
+
+echo "${scm}"
+
+/*
+step([
+    $class: "GitHubCommitStatusSetter",
+    reposSource: [$class: "ManuallyEnteredRepositorySource", url: "https://github.com/my-org/my-repo"],
+    contextSource: [$class: "ManuallyEnteredCommitContextSource", context: "ci/jenkins/build-status"],
+    errorHandlers: [[$class: "ChangingBuildStatusErrorHandler", result: "UNSTABLE"]],
+    statusResultSource: [ $class: "ConditionalStatusResultSource", results: [[$class: "AnyBuildResult", message: message, state: state]] ]
+])
+*/
 
 stage('build') {
     echo "Building..."
