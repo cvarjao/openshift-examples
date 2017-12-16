@@ -11,7 +11,7 @@ properties([
 echo "${scm.getRepositories()}"
 echo "${scm.getBranches()}"
 echo "${scm.getExtensions()}"
-echo sh(returnStdout: true, script: 'env')
+
 
 /*
 step([
@@ -23,6 +23,9 @@ step([
 ])
 */
 
+node('master') {
+  echo sh(returnStdout: true, script: 'env')
+}
 stage('build') {
     echo "Building..."
     echo "Something cool"
