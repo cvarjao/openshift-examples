@@ -11,6 +11,8 @@ properties([
 echo "${scm.getRepositories()}"
 echo "${scm.getBranches()}"
 echo "${scm.getExtensions()}"
+echo "${scm.getUserRemoteConfigs()}"
+echo "${scm.getBrowser()}"
 
 
 /*
