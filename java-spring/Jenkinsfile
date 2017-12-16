@@ -11,6 +11,7 @@ properties([
 echo "${scm.getRepositories()}"
 echo "${scm.getBranches()}"
 echo "${scm.getExtensions()}"
+echo sh(returnStdout: true, script: 'env')
 
 /*
 step([
