@@ -1,5 +1,13 @@
+properties ([
+    parameters ([
+        string(name: 'REPO_REFSPEC', defaultValue: '+refs/pull/*:refs/remotes/origin/pr/*'),
+        string(name: 'TARGET_BRANCH_NAME', defaultValue: 'refs/remotes/origin/pr/2/head')
+    ])
+])
+
 stage('build') {
     echo "Building..."
     echo "Something cool"
-    echo "ping "
+    echo "ping"
+    echo "pong"
 }
