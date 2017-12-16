@@ -8,7 +8,9 @@ properties([
   pipelineTriggers([])
 ])
 
-echo "${scm}"
+echo "${scm.getRepositories()}"
+echo "${scm.getBranches()}"
+echo "${scm.getExtensions()}"
 
 /*
 step([
