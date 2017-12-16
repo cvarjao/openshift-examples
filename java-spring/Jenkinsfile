@@ -1,5 +1,5 @@
 stage('build') {
     echo "Building..."
     echo "Something cool"
-    echo "ping"
+    echo "ping "
 }
