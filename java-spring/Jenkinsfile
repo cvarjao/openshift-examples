@@ -30,6 +30,7 @@ try{
       echo "Something cool"
       echo "ping"
       echo "pong"
+     echo "Hello"
   }
   
   node('master') {
