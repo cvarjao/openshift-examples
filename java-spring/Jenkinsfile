@@ -23,6 +23,14 @@ def updateGithubCommitStatus(context, state, message) {
 try{
   node('master') {
     updateGithubCommitStatus('jenkins/ci', org.kohsuke.github.GHCommitState.PENDING, 'Build in progress')
+    updateGithubCommitStatus('jenkins/qa/integration', org.kohsuke.github.GHCommitState.PENDING, 'Pending')
+    updateGithubCommitStatus('jenkins/cd/integration', org.kohsuke.github.GHCommitState.PENDING, 'Pending')
+    updateGithubCommitStatus('jenkins/qa/bdd/integration', org.kohsuke.github.GHCommitState.PENDING, 'Pending')
+    updateGithubCommitStatus('jenkins/cd/test', org.kohsuke.github.GHCommitState.PENDING, 'Pending')
+    updateGithubCommitStatus('jenkins/qa/smoke/test', org.kohsuke.github.GHCommitState.PENDING, 'Pending')
+    updateGithubCommitStatus('jenkins/qa/system/test', org.kohsuke.github.GHCommitState.PENDING, 'Pending')
+    updateGithubCommitStatus('jenkins/cd/production', org.kohsuke.github.GHCommitState.PENDING, 'Pending')
+    updateGithubCommitStatus('jenkins/qa/smoke/production', org.kohsuke.github.GHCommitState.PENDING, 'Pending')
   }
   
   stage('build') {
@@ -34,7 +42,24 @@ try{
   }
   
   node('master') {
+    sleep 30
     updateGithubCommitStatus('jenkins/ci', org.kohsuke.github.GHCommitState.SUCCESS, 'Build complete')
+    sleep 30
+    updateGithubCommitStatus('jenkins/qa/integration', org.kohsuke.github.GHCommitState.SUCCESS, 'Done')
+    sleep 30
+    updateGithubCommitStatus('jenkins/cd/integration', org.kohsuke.github.GHCommitState.SUCCESS, 'Done')
+    sleep 30
+    updateGithubCommitStatus('jenkins/qa/bdd/integration', org.kohsuke.github.GHCommitState.SUCCESS, 'Done')
+    sleep 30
+    updateGithubCommitStatus('jenkins/cd/test', org.kohsuke.github.GHCommitState.SUCCESS, 'Done')
+    sleep 30
+    updateGithubCommitStatus('jenkins/qa/smoke/test', org.kohsuke.github.GHCommitState.SUCCESS, 'Done')
+    sleep 30
+    updateGithubCommitStatus('jenkins/qa/system/test', org.kohsuke.github.GHCommitState.SUCCESS, 'Done')
+    sleep 30
+    updateGithubCommitStatus('jenkins/cd/production', org.kohsuke.github.GHCommitState.SUCCESS, 'Done')
+    sleep 30
+    updateGithubCommitStatus('jenkins/qa/smoke/production', org.kohsuke.github.GHCommitState.SUCCESS, 'Done')
   }
 }catch (exception) {
   updateGithubCommitStatus('jenkins/ci', org.kohsuke.github.GHCommitState.ERROR, 'Build Error')
