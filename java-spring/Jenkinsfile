@@ -39,6 +39,7 @@ try{
       echo "ping"
       echo "pong"
      echo "Hello"
+    echo "how are you?"
   }
   
   node('master') {
