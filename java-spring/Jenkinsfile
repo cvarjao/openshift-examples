@@ -25,6 +25,10 @@ def updateGithubCommitStatus(context, state, message) {
   echo "check:'${context}'='${state}' -> ${message}"
 }
 
+openshift.withCluster() { // Use "default" cluster or fallback to OpenShift cluster detection
+    echo "Hello from the project running Jenkins: ${openshift.project()}"
+}
+
 try{
   node('master') {
     updateGithubCommitStatus('jenkins/ci', GHCS_PENDING, 'Build in progress')
