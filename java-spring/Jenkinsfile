@@ -1,5 +1,8 @@
 //https://github.com/kohsuke/github-api/blob/master/src/main/java/org/kohsuke/github/GHCommitState.java
 // PENDING, SUCCESS, ERROR, FAILURE
+def GHCS_PENDING=org.kohsuke.github.GHCommitState.PENDING
+def GHCS_SUCCESS=org.kohsuke.github.GHCommitState.SUCCESS
+def GHCS_ERROR=org.kohsuke.github.GHCommitState.ERROR
 
 /*
 properties([
@@ -24,15 +27,15 @@ def updateGithubCommitStatus(context, state, message) {
 
 try{
   node('master') {
-    updateGithubCommitStatus('jenkins/ci', org.kohsuke.github.GHCommitState.PENDING, 'Build in progress')
-    updateGithubCommitStatus('jenkins/qa/integration', org.kohsuke.github.GHCommitState.PENDING, 'Pending')
-    updateGithubCommitStatus('jenkins/cd/integration', org.kohsuke.github.GHCommitState.PENDING, 'Pending')
-    updateGithubCommitStatus('jenkins/qa/bdd/integration', org.kohsuke.github.GHCommitState.PENDING, 'Pending')
-    updateGithubCommitStatus('jenkins/cd/test', org.kohsuke.github.GHCommitState.PENDING, 'Pending')
-    updateGithubCommitStatus('jenkins/qa/smoke/test', org.kohsuke.github.GHCommitState.PENDING, 'Pending')
-    updateGithubCommitStatus('jenkins/qa/system/test', org.kohsuke.github.GHCommitState.PENDING, 'Pending')
-    updateGithubCommitStatus('jenkins/cd/production', org.kohsuke.github.GHCommitState.PENDING, 'Pending')
-    updateGithubCommitStatus('jenkins/qa/smoke/production', org.kohsuke.github.GHCommitState.PENDING, 'Pending')
+    updateGithubCommitStatus('jenkins/ci', GHCS_PENDING, 'Build in progress')
+    updateGithubCommitStatus('jenkins/qa/integration', GHCS_PENDING, 'Pending')
+    updateGithubCommitStatus('jenkins/cd/integration', GHCS_PENDING, 'Pending')
+    updateGithubCommitStatus('jenkins/qa/bdd/integration', GHCS_PENDING, 'Pending')
+    updateGithubCommitStatus('jenkins/cd/test', GHCS_PENDING, 'Pending')
+    updateGithubCommitStatus('jenkins/qa/smoke/test', GHCS_PENDING, 'Pending')
+    updateGithubCommitStatus('jenkins/qa/system/test', GHCS_PENDING, 'Pending')
+    updateGithubCommitStatus('jenkins/cd/production', GHCS_PENDING, 'Pending')
+    updateGithubCommitStatus('jenkins/qa/smoke/production', GHCS_PENDING, 'Pending')
   }
   
   stage('build') {
@@ -46,28 +49,28 @@ try{
   
   node('master') {
     sleep 30
-    updateGithubCommitStatus('jenkins/ci', org.kohsuke.github.GHCommitState.SUCCESS, 'Build complete')
+    updateGithubCommitStatus('jenkins/ci', GHCS_SUCCESS, 'Build complete')
     sleep 30
-    updateGithubCommitStatus('jenkins/qa/integration', org.kohsuke.github.GHCommitState.SUCCESS, 'Done')
+    updateGithubCommitStatus('jenkins/qa/integration', GHCS_SUCCESS, 'Done')
     sleep 30
-    updateGithubCommitStatus('jenkins/cd/integration', org.kohsuke.github.GHCommitState.SUCCESS, 'Done')
+    updateGithubCommitStatus('jenkins/cd/integration', GHCS_SUCCESS, 'Done')
     sleep 30
-    updateGithubCommitStatus('jenkins/qa/bdd/integration', org.kohsuke.github.GHCommitState.SUCCESS, 'Done')
+    updateGithubCommitStatus('jenkins/qa/bdd/integration', GHCS_SUCCESS, 'Done')
     sleep 30
-    updateGithubCommitStatus('jenkins/cd/test', org.kohsuke.github.GHCommitState.SUCCESS, 'Done')
+    updateGithubCommitStatus('jenkins/cd/test', GHCS_SUCCESS, 'Done')
     sleep 30
-    updateGithubCommitStatus('jenkins/qa/smoke/test', org.kohsuke.github.GHCommitState.SUCCESS, 'Done')
+    updateGithubCommitStatus('jenkins/qa/smoke/test', GHCS_SUCCESS, 'Done')
     sleep 30
-    updateGithubCommitStatus('jenkins/qa/system/test', org.kohsuke.github.GHCommitState.SUCCESS, 'Done')
+    updateGithubCommitStatus('jenkins/qa/system/test', GHCS_SUCCESS, 'Done')
     sleep 30
-    updateGithubCommitStatus('jenkins/cd/production', org.kohsuke.github.GHCommitState.SUCCESS, 'Done')
+    updateGithubCommitStatus('jenkins/cd/production', GHCS_SUCCESS, 'Done')
     sleep 30
-    updateGithubCommitStatus('jenkins/qa/smoke/production', org.kohsuke.github.GHCommitState.SUCCESS, 'Done')
+    updateGithubCommitStatus('jenkins/qa/smoke/production', GHCS_SUCCESS, 'Done')
   }
 }catch (exception) {
   def sw = new StringWriter()
   def pw = new PrintWriter(sw)
   exception.printStackTrace(pw)
   echo sw.toString()
-  updateGithubCommitStatus('jenkins/ci', org.kohsuke.github.GHCommitState.ERROR, 'Build Error')
+  updateGithubCommitStatus('jenkins/ci', GHCS_ERROR, 'Build Error')
 }
