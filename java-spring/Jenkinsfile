@@ -15,9 +15,10 @@ properties([
 
 
 def updateGithubCommitStatus(context, state, message) {
-  com.cloudbees.jenkins.GitHubRepositoryName.create(params.REPO_HTML_URL).resolve().each{ repo ->
-    repo.createCommitStatus(params.HEAD_SHA, state, env.BUILD_URL, message, context)
-  }
+  //com.cloudbees.jenkins.GitHubRepositoryName.create(params.REPO_HTML_URL).resolve().each{ repo ->
+  //  repo.createCommitStatus(params.HEAD_SHA, state, env.BUILD_URL, message, context)
+  //}
+  echo "check:'${context}'='${state}' -> ${message}"
 }
 
 try{
