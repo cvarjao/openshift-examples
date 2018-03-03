@@ -1,6 +1,7 @@
 //https://github.com/kohsuke/github-api/blob/master/src/main/java/org/kohsuke/github/GHCommitState.java
 // PENDING, SUCCESS, ERROR, FAILURE
 
+/*
 properties([
   disableConcurrentBuilds(),
   parameters([
@@ -12,7 +13,7 @@ properties([
   ]),
   pipelineTriggers([])
 ])
-
+*/
 
 def updateGithubCommitStatus(context, state, message) {
   //com.cloudbees.jenkins.GitHubRepositoryName.create(params.REPO_HTML_URL).resolve().each{ repo ->
