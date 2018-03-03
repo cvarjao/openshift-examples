@@ -65,5 +65,9 @@ try{
     updateGithubCommitStatus('jenkins/qa/smoke/production', org.kohsuke.github.GHCommitState.SUCCESS, 'Done')
   }
 }catch (exception) {
+  def sw = new StringWriter()
+  def pw = new PrintWriter(sw)
+  exception.printStackTrace(pw)
+  echo sw.toString()
   updateGithubCommitStatus('jenkins/ci', org.kohsuke.github.GHCommitState.ERROR, 'Build Error')
 }
